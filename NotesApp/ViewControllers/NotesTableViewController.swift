@@ -9,10 +9,17 @@ import UIKit
 
 class NotesTableViewController: UITableViewController {
     
+    private let context = StorageManager.shared.persistentContainer.viewContext
+    
+    private let cellID = "note"
+    
     private var notes: [Note] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        setupNavigationBar()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,7 +35,7 @@ class NotesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         var content = cell.defaultContentConfiguration()
         let note = notes[indexPath.row]
         content.text = note.title
@@ -37,6 +44,13 @@ class NotesTableViewController: UITableViewController {
         return cell
     }
     
+    private func setupNavigationBar() {
+        title = "Notes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
