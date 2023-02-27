@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		8B30F37029ACFC9100D34869 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F36F29ACFC9100D34869 /* AppDelegate.swift */; };
-		8B30F37229ACFC9100D34869 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F37129ACFC9100D34869 /* SceneDelegate.swift */; };
 		8B30F37429ACFC9100D34869 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F37329ACFC9100D34869 /* ViewController.swift */; };
 		8B30F37729ACFC9100D34869 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B30F37529ACFC9100D34869 /* Main.storyboard */; };
 		8B30F37A29ACFC9100D34869 /* NotesApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F37829ACFC9100D34869 /* NotesApp.xcdatamodeld */; };
 		8B30F37C29ACFC9300D34869 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B30F37B29ACFC9300D34869 /* Assets.xcassets */; };
 		8B30F37F29ACFC9300D34869 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B30F37D29ACFC9300D34869 /* LaunchScreen.storyboard */; };
+		8B30F38829ACFDF500D34869 /* NotesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F38729ACFDF500D34869 /* NotesList.swift */; };
+		8B30F38B29ACFE2F00D34869 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30F38A29ACFE2F00D34869 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8B30F36C29ACFC9100D34869 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B30F36F29ACFC9100D34869 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B30F37129ACFC9100D34869 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8B30F37329ACFC9100D34869 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B30F37629ACFC9100D34869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B30F37929ACFC9100D34869 /* NotesApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesApp.xcdatamodel; sourceTree = "<group>"; };
 		8B30F37B29ACFC9300D34869 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B30F37E29ACFC9300D34869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B30F38029ACFC9300D34869 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B30F38729ACFDF500D34869 /* NotesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesList.swift; sourceTree = "<group>"; };
+		8B30F38A29ACFE2F00D34869 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,65 @@
 		8B30F36E29ACFC9100D34869 /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
-				8B30F36F29ACFC9100D34869 /* AppDelegate.swift */,
-				8B30F37129ACFC9100D34869 /* SceneDelegate.swift */,
-				8B30F37329ACFC9100D34869 /* ViewController.swift */,
-				8B30F37529ACFC9100D34869 /* Main.storyboard */,
-				8B30F37B29ACFC9300D34869 /* Assets.xcassets */,
-				8B30F37D29ACFC9300D34869 /* LaunchScreen.storyboard */,
-				8B30F38029ACFC9300D34869 /* Info.plist */,
+				8B30F38C29ACFE4400D34869 /* Services */,
+				8B30F38E29ACFE9600D34869 /* App */,
+				8B30F38629ACFD8A00D34869 /* ViewControllers */,
+				8B30F38D29ACFE6100D34869 /* Storyboards */,
+				8B30F38929ACFE0900D34869 /* Models */,
+				8B30F39029ACFED000D34869 /* Resurces */,
 				8B30F37829ACFC9100D34869 /* NotesApp.xcdatamodeld */,
 			);
 			path = NotesApp;
+			sourceTree = "<group>";
+		};
+		8B30F38629ACFD8A00D34869 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F37329ACFC9100D34869 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8B30F38929ACFE0900D34869 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F38729ACFDF500D34869 /* NotesList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8B30F38C29ACFE4400D34869 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F38A29ACFE2F00D34869 /* DataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8B30F38D29ACFE6100D34869 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F37529ACFC9100D34869 /* Main.storyboard */,
+				8B30F37D29ACFC9300D34869 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8B30F38E29ACFE9600D34869 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F36F29ACFC9100D34869 /* AppDelegate.swift */,
+				8B30F38029ACFC9300D34869 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8B30F39029ACFED000D34869 /* Resurces */ = {
+			isa = PBXGroup;
+			children = (
+				8B30F37B29ACFC9300D34869 /* Assets.xcassets */,
+			);
+			path = Resurces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +192,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B30F38829ACFDF500D34869 /* NotesList.swift in Sources */,
+				8B30F38B29ACFE2F00D34869 /* DataManager.swift in Sources */,
 				8B30F37429ACFC9100D34869 /* ViewController.swift in Sources */,
 				8B30F37029ACFC9100D34869 /* AppDelegate.swift in Sources */,
-				8B30F37229ACFC9100D34869 /* SceneDelegate.swift in Sources */,
 				8B30F37A29ACFC9100D34869 /* NotesApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +345,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5JLFFB6Q5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotesApp/Info.plist;
+				INFOPLIST_FILE = NotesApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -306,9 +358,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = polyus.NotesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,7 +376,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5JLFFB6Q5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotesApp/Info.plist;
+				INFOPLIST_FILE = NotesApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -334,9 +389,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = polyus.NotesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
