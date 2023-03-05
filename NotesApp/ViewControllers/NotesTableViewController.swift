@@ -9,27 +9,80 @@ import UIKit
 
 class NotesTableViewController: UITableViewController {
     
-    private let context = StorageManager.shared.persistentContainer.viewContext
-    
+    // MARK: - Private Properties
     private let cellID = "note"
-    
     private var notes: [Note] = []
 
+    
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
+        setupView()
+    }
+
+    // MARK: - Private Methods
+    private func setupView() {
         view.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         setupNavigationBar()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    private func setupNavigationBar() {
+        title = "Notes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        
+        navBarAppearance.backgroundColor = UIColor(
+            red: 21/255,
+            green: 101/255,
+            blue: 192/255,
+            alpha: 194/255
+        )
+        
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addNewNote)
+        )
+        navigationController?.navigationBar.tintColor = .white
+    }
+    
+    @objc private func addNewNote() {
+        let noteVC = NoteViewController()
+        noteVC.completion = { [unowned self] title, subtitle in
+            if title != "" || subtitle != "" {
+                StorageManager.shared.create(title, subtitle) { _ in }
+                fetchData()
+                tableView.reloadData()
+            }
+        }
+        present(noteVC, animated: true)
+    }
+    
+    private func fetchData() {
+        StorageManager.shared.fetchData { [unowned self] result in
+            switch result {
+            case .success(let notes):
+                self.notes = notes
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
 
-    // MARK: - Table view data source
 
+
+// MARK: - UITableViewDataSource
+extension NotesTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
@@ -43,58 +96,35 @@ class NotesTableViewController: UITableViewController {
         cell.contentConfiguration = content
         return cell
     }
+}
+
+
+// MARK: - UITableViewDelegate
+extension NotesTableViewController {
+    // Edit note
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let note = notes[indexPath.row]
+        let noteVC = NoteViewController()
+        noteVC.noteTitle = note.title ?? ""
+        noteVC.noteSubtitle = note.subtitle ?? ""
+        noteVC.completion = { [unowned self] title, subtitle in
+            if title != "" || subtitle != "" {
+                StorageManager.shared.update(note, title, subtitle)
+                fetchData()
+                tableView.reloadData()
+//                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
+        present(noteVC, animated: true)
+    }
     
-    private func setupNavigationBar() {
-        title = "Notes"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        
-    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
+    // Delete task
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let note = notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            StorageManager.shared.delete(note)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
