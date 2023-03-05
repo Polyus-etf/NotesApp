@@ -17,11 +17,16 @@ class NotesTableViewController: UITableViewController {
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        createTempData()
         fetchData()
         setupView()
     }
 
     // MARK: - Private Methods
+    private func createTempData() {
+        DataManager.shared.createTempData()
+    }
+    
     private func setupView() {
         view.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
